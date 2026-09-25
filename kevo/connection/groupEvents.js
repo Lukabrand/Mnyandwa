@@ -165,9 +165,9 @@ const setupGroupEventsListeners = (Gifted) => {
 
             const timeZone =
                 (await getSetting("TIME_ZONE")) || "Africa/Nairobi";
-            const botName = (await getSetting("BOT_NAME")) || "ATASSA MD";
+            const botName = (await getSetting("BOT_NAME")) || "MNYANDWA MD";
             const botFooter =
-                (await getSetting("FOOTER")) || "Powered by Gifted Tech";
+                (await getSetting("FOOTER")) || "Powered by Kevo Tech";
             const newsletterJid = (await getSetting("NEWSLETTER_JID")) || "";
 
             const currentTime = moment().tz(timeZone).format("h:mm A");
