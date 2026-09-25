@@ -1,5 +1,5 @@
 require("events").EventEmitter.defaultMaxListeners = 960;
-require("./gift/gmdHelpers");
+require("./kevo/gmdHelpers");
 
 const {
     default: giftedConnect,
@@ -73,7 +73,7 @@ const {
     setupConnectionHandler,
     setupGroupEventsListeners,
     initializeLidStore,
-} = require("./gift");
+} = require("./kevo");
 
 const {
     saveAntiDelete,
@@ -81,7 +81,7 @@ const {
     removeAntiDelete,
     startCleanup,
     SQLiteStore,
-} = require('./gift/database/messageStore');
+} = require('./kevo/database/messageStore');
 
 const config = require("./config");
 const googleTTS = require("google-tts-api");
@@ -101,7 +101,7 @@ async function resolveRealJid(Gifted, jid) {
     if (!jid) return null;
     if (!jid.endsWith('@lid')) return jid;   // already real
     try {
-        const { getLidMapping } = require('./gift/connection/groupCache');
+        const { getLidMapping } = require('./kevo/connection/groupCache');
         const cached = getLidMapping(jid);
         if (cached) return cached;
     } catch (_) {}
@@ -110,7 +110,7 @@ async function resolveRealJid(Gifted, jid) {
         if (resolved && !resolved.endsWith('@lid')) return resolved;
     } catch (_) {}
     try {
-        const { getLidMappingFromDb } = require('./gift/database/lidMapping');
+        const { getLidMappingFromDb } = require('./kevo/database/lidMapping');
         const fromDb = await getLidMappingFromDb(jid);
         if (fromDb) return fromDb;
     } catch (_) {}
@@ -124,8 +124,8 @@ let Gifted;
 let store;
 
 logger.level = "silent";
-app.use(express.static("gift"));
-app.get("/", (req, res) => res.sendFile(__dirname + "/gift/gifted.html"));
+app.use(express.static("kevo"));
+app.get("/", (req, res) => res.sendFile(__dirname + "/kevo/gifted.html"));
 app.get("/health", (req, res) =>
     res.status(200).json({ status: "alive", uptime: process.uptime() }),
 );
@@ -145,8 +145,8 @@ setInterval(async () => {
     } catch (e) {}
 }, 240000);
 
-const sessionDir = path.join(__dirname, "gift", "session");
-const pluginsPath = path.join(__dirname, "gifted");
+const sessionDir = path.join(__dirname, "kevo", "session");
+const pluginsPath = path.join(__dirname, "kevoh");
 
 let botSettings = {};
 async function loadBotSettings() {
