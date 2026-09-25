@@ -1,7 +1,7 @@
 {
-  "name": "atassa-md",
+  "name": "mnyandwa-md",
   "version": "5.0.0",
-  "description": "Atassa-Md, a Multi Device Whatsapp Bot built by Gifted Tech to Enhance Whatsapp Communication Experience",
+  "description": "Mnyandwa-Md, a Multi Device Whatsapp Bot built by Gifted Tech to Enhance Whatsapp Communication Experience",
   "main": "./index.js",
   "type": "commonjs",
   "scripts": {
